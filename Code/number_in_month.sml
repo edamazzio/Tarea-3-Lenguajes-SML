@@ -10,3 +10,6 @@ fun number_in_month (date: (int*int*int) list, month:int) =
     else if #2 (hd(date))=month
     then 1 + number_in_month((tl date),month)
     else number_in_month((tl date),month)
+ 
+ 
+ 
