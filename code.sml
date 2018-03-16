@@ -17,11 +17,12 @@ fun is_older (date1 : int*int*int, date2 : int*int*int) =
   then
     true
   else
-    if #2 date1 < #2 date2
+    if (#2 date1 < #2 date2) andalso (#1 date1 = #1 date2)
     then
       true
-  else #3 date1 < #3 date2;
+  else (#2 date1 = #2 date2) andalso (#1 date1 = #1 date2) andalso #3 date1 < #3 date2;
 
+hd(lista)::
 
 (*Funcion 2
 toma una lista de fechas y un mes (el mes
@@ -53,7 +54,7 @@ fun number_in_months (date: (int*int*int) list, month: int list) =
 
 
 
-(*Funcion 4 
+(*Funcion 4
 toma una lista de fechas y una lista de
 meses (una lista de enteros) y retorna un int que indica el número de fechas que están en
 cualquiera de los meses en la lista de meses. (Nota: use la función del problema anterior).
@@ -166,7 +167,7 @@ fun month_range(day1, day2) =
   in
     month_range_helper((day2 - day1), day1)
   end
-  
+
 (*Funcion 11
 toma una lista de fechas y evalúa a una option
 (int*int*int). Evalúa a NONE si la lista no tiene fechas y a SOME d si la fecha d es la más
@@ -174,23 +175,21 @@ vieja en la lista
 Test = val test11 = oldest([(2012,2,28),(2011,3,31),(2011,4,28)]);
 resp = SOME (2011,3,31)
 No completa
- 
+
 fun oldest (date: (int*int*int) list) =
-    if null date 
+    if null date
     then NONE
-    else let 
+    else let
     fun old_date(date: (int*int*int) list) =
         if null (tl date)
         then (hd date)
-        else if #1 (hd date) < #1 (hd(tl date)) orelse  (#1 (hd date) = #1 (hd(t                l date)) andalso #2 (hd date) 
+        else if #1 (hd date) < #1 (hd(tl date)) orelse  (#1 (hd date) = #1 (hd(t                l date)) andalso #2 (hd date)
                 < #2(hd(tl date))) orelse (#1 (hd date) = #1 (hd(tl date)
                 andalso #2 (hd date) = #2(hd(tl date)) andalso #3 (hd date) < #3                (hd(tl date)))
-        then old_date((tl date))    
+        then old_date((tl date))
         else old_date((hd date)::drop(date,2))
-    
-    in 
+
+    in
         SOME (old_date date)
     end
- *)    
-  
-
+ *)
