@@ -23,15 +23,16 @@ is_older ((2018,5,4),(2018,5,5));
  *)
 
  
- fun oldest (date: (int*int*int) list)
+ fun oldest (date: (int*int*int) list) =
     if null date 
     then NONE
     else let 
-    fun old_date(date: (int*int*int) list)
+    fun old_date(date: (int*int*int) list) =
         if null (tl date)
         then (hd date)
-        else if #1 (hd date) < #1 (hd(tl date)) orelse  (#1 (hd date) = #1 (hd(tl date)) andalso #2 (hd date) 
-                < #2(hd(tl date))) orelse (#1 (hd date) = #1 (hd(tl date) andalso #2 (hd date) = #2(hd(tl date)) andalso #3 (hd date) < #3(hd(tl date)))
+        else if #1 (hd date) < #1 (hd(tl date)) orelse  (#1 (hd date) = #1 (hd(t                l date)) andalso #2 (hd date) 
+                < #2(hd(tl date))) orelse (#1 (hd date) = #1 (hd(tl date)
+                andalso #2 (hd date) = #2(hd(tl date)) andalso #3 (hd date) < #3                (hd(tl date)))
         then old_date((tl date))    
         else old_date((hd date)::drop(date,2))
     
