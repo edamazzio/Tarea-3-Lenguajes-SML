@@ -7,10 +7,11 @@ fun is_older (date1 : int*int*int, date2 : int*int*int) =
   then
     true
   else
-    if #2 date1 < #2 date2
+    if (#2 date1 < #2 date2) andalso (#1 date1 = #1 date2)
     then
       true
-  else #3 date1 < #3 date2;
+  else (#2 date1 = #2 date2) andalso (#1 date1 = #1 date2) andalso #3 date1 < #3 date2;
+
 
 (* Pruebas
 is_older ((2017,3,5),(2018,5,2));
